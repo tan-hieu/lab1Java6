@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Please sign in</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: #f9fafb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .card {
+        background: #111827;
+        padding: 32px 28px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 380px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(156, 163, 175, 0.4);
+      }
+      h2 {
+        font-size: 22px;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .message {
+        display: block;
+        min-height: 18px;
+        margin-bottom: 16px;
+        color: #f97373;
+        font-size: 14px;
+        text-align: center;
+      }
+      form p {
+        margin-bottom: 14px;
+        font-size: 14px;
+      }
+      label {
+        display: block;
+        margin-bottom: 4px;
+        color: #d1d5db;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 9px 10px;
+        border-radius: 8px;
+        border: 1px solid #4b5563;
+        background: #020617;
+        color: #e5e7eb;
+        font-size: 14px;
+      }
+      input::placeholder {
+        color: #6b7280;
+      }
+      .remember {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #d1d5db;
+      }
+      button {
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: #f9fafb;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition:
+          transform 0.1s ease,
+          box-shadow 0.1s ease,
+          opacity 0.15s;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.55);
+      }
+      button:hover {
+        opacity: 0.95;
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.7);
+      }
+      button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Please sign in</h2>
+      <i class="message" th:text="${message}"></i>
+
+      <form th:action="@{/login/check}" method="post">
+        <p>
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="admin@gmail.com"
+          />
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" />
+        </p>
+        <p class="remember">
+          <input id="remember-me" name="remember-me" type="checkbox" />
+          <label for="remember-me" style="margin: 0">Remember me?</label>
+        </p>
+        <p>
+          <button type="submit">Sign in</button>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

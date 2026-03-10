@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Info</title>
+    <style>
+      .user-info {
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+      }
+      .user-info ul {
+        list-style: none;
+      }
+      .user-info li {
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #111827;
+      }
+      .user-info b {
+        font-weight: 600;
+      }
+      .user-info a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .user-info a:hover {
+        text-decoration: underline;
+      }
+      .user-info .not-logged {
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="user-info" th:switch="${@auth.authenticated}">
+      <ul th:case="true">
+        <li>Username: <b th:text="${@auth.username}"></b></li>
+        <li>Roles: <b th:text="${@auth.roles}"></b></li>
+        <li><a th:href="@{/logout}">Sign-out</a></li>
+        <li th:if="${@auth.hasAnyRole('ADMIN')}">
+          <a href="#">Goto Administration</a>
+        </li>
+      </ul>
+      <ul class="not-logged" th:case="false">
+        <li>Bạn chưa đăng nhập</li>
+        <li><a th:href="@{/login/form}">Sign-in</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
